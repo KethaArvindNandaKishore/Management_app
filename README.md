@@ -1,80 +1,138 @@
-# Build a Complete Project Management Dashboard
+# Mangement_App 
 
-[![Tutorial Video](https://img.youtube.com/vi/KAV8vo7hGAo/0.jpg)](https://www.youtube.com/watch?v=KAV8vo7hGAo)
+## Overview
 
-This repository hosts the code for a comprehensive tutorial on building a Project Management Dashboard using Next.js, Node.js, and AWS services.
-Follow the [video tutorial on YouTube](https://www.youtube.com/watch?v=KAV8vo7hGAo) for detailed setup, configuration, and deployment instructions.
+This project consists of a **backend** built with Node.js, Express, and Prisma, and a **frontend** using Next.js with Redux and AWS Amplify. The application provides a scalable architecture for full-stack development.
 
-## Join Our Community
+## Technologies Used
 
-For discussion and support for this specific app, join our [Discord community](https://discord.com/channels/1070200085440376872/1082900634442940416/threads/1282730219488280576).
+### Backend:
 
-## Technology Stack
+- **Node.js** - JavaScript runtime
+- **Express** - Web framework
+- **Prisma** - ORM for database interactions
+- **TypeScript** - Strongly typed JavaScript
+- **Dotenv** - Environment variable management
+- **Morgan & Helmet** - Logging and security enhancements
 
-- **Frontend**: Next.js, Tailwind CSS, Redux Toolkit, Redux Toolkit Query, Material UI Data Grid
-- **Backend**: Node.js with Express, Prisma (PostgreSQL ORM)
-- **Database**: PostgreSQL, managed with PgAdmin
-- **Cloud**: AWS EC2, AWS RDS, AWS API Gateway, AWS Amplify, AWS S3, AWS Lambda, AWS Cognito
+### Frontend:
+
+- **Next.js** - React framework for SSR and static site generation
+- **Redux Toolkit** - State management
+- **AWS Amplify** - Authentication and backend services
+- **Material UI** - UI components
+- **Tailwind CSS** - Utility-first styling
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have these tools installed:
+Make sure you have the following installed:
 
-- Git
-- Node.js
-- npm (Node Package Manager)
-- PostgreSQL ([download](https://www.postgresql.org/download/))
-- PgAdmin ([download](https://www.pgadmin.org/download/))
+- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [PostgreSQL](https://www.postgresql.org/) (or your preferred database)
 
-### Installation Steps
+### Installation
 
-1. Clone the repository:
-   `git clone [git url]`
-   `cd project-management`
+#### Clone the Repository
 
-2. Install dependencies in both client and server:
-   `cd client`
-   `npm i`
-   `cd ..`
-   `cd server`
-   `npm i`
+```sh
+git clone <repository-url>
+cd <project-folder>
+```
 
-3. Set up the database:
-   `npx prisma generate`
-   `npx prisma migrate dev --name init`
-   `npm run seed`
+#### Backend Setup
 
-4. Configure environment variables:
+1. Navigate to the backend folder:
+   ```sh
+   cd backend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up environment variables:
+   - Create a `.env` file in the root of the backend folder.
+   - Add the required variables (e.g., `DATABASE_URL` for Prisma, `PORT` for the server).
+4. Run database migrations:
+   ```sh
+   npx prisma migrate dev
+   ```
+5. Start the backend server:
+   ```sh
+   npm run dev
+   ```
 
-- `.env` for server settings (PORT, DATABASE_URL)
-- `.env.local` for client settings (NEXT_PUBLIC_API_BASE_URL)
+#### Frontend Setup
 
-5. Run the project
-   `npm run dev`
+1. Navigate to the frontend folder:
+   ```sh
+   cd frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up environment variables:
+   - Create a `.env.local` file in the root of the frontend folder.
+   - Add necessary API URLs and authentication keys.
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-## Additional Resources
+---
 
-### Code Repositories and Configuration Files
+## Scripts
 
-- [Complete project code on GitHub](https://github.com/ed-roh/project-management)
-- [Tailwind CSS configuration](https://github.com/ed-roh/project-management/blob/master/client/tailwind.config.ts)
-- [Redux Toolkit setup](https://github.com/ed-roh/project-management/blob/master/client/src/app/redux.tsx)
-- [Database seed files](https://github.com/ed-roh/project-management/tree/master/server/prisma/seedData)
-- [Image files](https://github.com/ed-roh/project-management/tree/master/client/public)
-- [globals.css file (to copy for Gantt charts)](https://github.com/ed-roh/project-management/blob/master/client/src/app/globals.css)
-- [AWS EC2 Instruction file](https://github.com/ed-roh/project-management/blob/master/server/aws-ec2-instructions.md)
+### Backend Scripts
 
-### Diagrams and Models
+| Command         | Description                                 |
+| --------------- | ------------------------------------------- |
+| `npm run dev`   | Runs the backend server in development mode |
+| `npm run build` | Builds the project for production           |
+| `npm run start` | Starts the backend in production mode       |
+| `npm run seed`  | Runs the Prisma seeding script              |
 
-- [Data model diagram](https://lucid.app/lucidchart/877dec2c-db89-4f7b-9ce0-80ce88b6ee37/edit)
-- [AWS architecture diagram](https://lucid.app/lucidchart/62c20695-d936-4ee7-9a53-ceef7aef8127/edit)
-- [AWS Cognito flow diagram](https://lucid.app/lucidchart/9e17e28e-6fe5-41df-b04b-b378fa21eb8f/edit)
+### Frontend Scripts
 
-### Database Management Commands
+| Command         | Description                           |
+| --------------- | ------------------------------------- |
+| `npm run dev`   | Starts the Next.js development server |
+| `npm run build` | Builds the project for production     |
+| `npm run start` | Starts the Next.js server             |
+| `npm run lint`  | Runs ESLint to check for code issues  |
 
-- Command for resetting ID in database:
-  ```sql
-  SELECT setval(pg_get_serial_sequence('"[DATA_MODEL_NAME_HERE]"', 'id'), coalesce(max(id)+1, 1), false) FROM "[DATA_MODEL_NAME_HERE]";
-  ```
+---
+
+## Deployment
+
+### Backend Deployment
+
+1. Build the backend project:
+   ```sh
+   npm run build
+   ```
+2. Deploy to your cloud provider (e.g., AWS, Vercel, or DigitalOcean).
+
+### Frontend Deployment
+
+1. Build the frontend project:
+   ```sh
+   npm run build
+   ```
+2. Deploy to a hosting service like Vercel, Netlify, or AWS Amplify.
+
+---
+
+## Contributing
+
+Feel free to contribute to this project by submitting issues or pull requests. Follow the conventional commit message style.
+
+---
+
+
+
